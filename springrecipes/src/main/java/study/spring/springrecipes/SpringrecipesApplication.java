@@ -11,6 +11,8 @@ import study.spring.springrecipes.sequence.SequenceDao;
 import study.spring.springrecipes.sequence.SequenceDaoImpl;
 import study.spring.springrecipes.sequence.SequenceGenerator;
 import study.spring.springrecipes.sequence.config.SequenceGeneratorConfiguration;
+import study.spring.springrecipes.shop.Product;
+import study.spring.springrecipes.shop.config.ShopConfiguration;
 
 //@SpringBootApplication
 @ComponentScan(
@@ -32,15 +34,13 @@ public class SpringrecipesApplication {
     public static void main(String[] args) {
         //SpringApplication.run(SpringrecipesApplication.class, args);
 
-        ApplicationContext context =
-                new AnnotationConfigApplicationContext("study.spring.springrecipes.sequence");
+        ApplicationContext applicationContext =
+                new AnnotationConfigApplicationContext(ShopConfiguration.class);
 
-        SequenceGenerator sequenceGenerator = context.getBean(SequenceGenerator.class);
-        System.out.println(sequenceGenerator.getSequence());
-        System.out.println(sequenceGenerator.getSequence());
+        Product aaa = applicationContext.getBean("aaa", Product.class);
+        Product cdrw = applicationContext.getBean("cdrw", Product.class);
 
-        SequenceDao sequenceDao = context.getBean(SequenceDao.class);
-        System.out.println(sequenceDao.getNextValue("IT"));
-        System.out.println(sequenceDao.getNextValue("IT"));
+        System.out.println(aaa);
+        System.out.println(cdrw);
     }
 }
