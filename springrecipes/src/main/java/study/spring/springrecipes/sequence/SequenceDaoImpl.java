@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Component
+@Component("sequenceDao")
 public class SequenceDaoImpl implements SequenceDao {
 
     private final Map<String, Sequence> sequences = new HashMap<>();

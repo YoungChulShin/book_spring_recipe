@@ -17,10 +17,13 @@ import study.spring.springrecipes.sequence.config.SequenceGeneratorConfiguration
         includeFilters = {
                 @ComponentScan.Filter(
                         type = FilterType.REGEX,
-                        pattern = {
-                                "study.spring.springrecipes.sequence.*Dao",
-                                "study.spring.springrecipes.sequence.*Service",
-                        }
+                        pattern = {"study.spring.springrecipes.sequence.*Dao",
+                                   "study.spring.springrecipes.sequence.*Service"})
+        },
+        excludeFilters = {
+                @ComponentScan.Filter(
+                        type = FilterType.ANNOTATION,
+                        classes = {org.springframework.stereotype.Controller.class}
                 )
         }
 )
@@ -30,9 +33,9 @@ public class SpringrecipesApplication {
         //SpringApplication.run(SpringrecipesApplication.class, args);
 
         ApplicationContext context =
-                new AnnotationConfigApplicationContext(SequenceGeneratorConfiguration.class);
+                new AnnotationConfigApplicationContext("study.spring.springrecipes.sequence");
 
-        SequenceGenerator sequenceGenerator = (SequenceGenerator)context.getBean(SequenceGenerator.class);
+        SequenceGenerator sequenceGenerator = context.getBean(SequenceGenerator.class);
         System.out.println(sequenceGenerator.getSequence());
         System.out.println(sequenceGenerator.getSequence());
 
